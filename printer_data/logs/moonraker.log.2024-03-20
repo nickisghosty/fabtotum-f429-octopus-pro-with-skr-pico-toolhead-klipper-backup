@@ -1,0 +1,257 @@
+-------------------- Log Start | Wed Mar 20 08:28:38 2024 --------------------
+platform: Linux-6.1.0-18-amd64-x86_64-with-glibc2.36
+data_path: /home/nickisghosty/printer_data
+is_default_data_path: False
+config_file: /home/nickisghosty/printer_data/config/moonraker.conf
+startup_warnings: []
+verbose: False
+debug: False
+asyncio_debug: False
+is_backup_config: False
+is_python_package: False
+instance_uuid: 08770c02398642ad9a583036c0321049
+unix_socket_path: /home/nickisghosty/printer_data/comms/moonraker.sock
+software_version: v0.8.0-324-ga3e4dac
+git_branch: master
+git_remote: origin
+git_repo_url: https://github.com/Arksine/moonraker.git
+modified_files: []
+unofficial_components: []
+log_file: /home/nickisghosty/printer_data/logs/moonraker.log
+python_version: 3.11.2 (main, Mar 13 2023, 12:18:29) [GCC 12.2.0]
+launch_args: /home/nickisghosty/moonraker-env/bin/python /home/nickisghosty/moonraker/moonraker/moonraker.py -d /home/nickisghosty/printer_data
+msgspec_enabled: False
+uvloop_enabled: False
+
+#################### Moonraker Configuration ####################
+
+[server]
+host = 0.0.0.0
+port = 7125
+klippy_uds_address = /home/nickisghosty/printer_data/comms/klippy.sock
+
+[authorization]
+trusted_clients = 
+	10.0.0.0/16
+	10.0.0.0/8
+	127.0.0.0/8
+	169.254.0.0/16
+	172.16.0.0/12
+	192.168.0.0/16
+	FE80::/10
+	::1/128
+cors_domains = 
+	*.lan
+	*.local
+	*://localhost
+	*://localhost:*
+	*://my.mainsail.xyz
+	*://app.fluidd.xyz
+
+[octoprint_compat]
+
+[history]
+
+[update_manager]
+channel = dev
+refresh_interval = 168
+
+[timelapse]
+
+[update_manager timelapse]
+type = git_repo
+primary_branch = main
+path = ~/moonraker-timelapse
+origin = https://github.com/mainsail-crew/moonraker-timelapse.git
+managed_services = klipper moonraker
+
+[update_manager fluidd-config]
+type = git_repo
+primary_branch = master
+path = ~/fluidd-config
+origin = https://github.com/fluidd-core/fluidd-config.git
+managed_services = klipper
+
+[update_manager fluidd]
+type = web
+channel = stable
+repo = fluidd-core/fluidd
+path = ~/fluidd
+
+[update_manager mainsail-config]
+type = git_repo
+primary_branch = master
+path = ~/mainsail-config
+origin = https://github.com/mainsail-crew/mainsail-config.git
+managed_services = klipper
+
+[update_manager mainsail]
+type = web
+channel = stable
+repo = mainsail-crew/mainsail
+path = ~/mainsail
+
+[update_manager crowsnest]
+type = git_repo
+path = ~/crowsnest
+origin = https://github.com/mainsail-crew/crowsnest.git
+managed_services = crowsnest
+install_script = tools/pkglist.sh
+
+[update_manager led_effect]
+type = git_repo
+path = ~/klipper-led_effect
+origin = https://github.com/julianschill/klipper-led_effect.git
+is_system_service = False
+
+[update_manager klipper-macros]
+type = git_repo
+origin = https://github.com/jschuh/klipper-macros.git
+path = ~/printer_data/config/klipper-macros
+primary_branch = main
+is_system_service = False
+managed_services = klipper
+
+#################################################################
+All Configuration Files:
+/home/nickisghosty/printer_data/config/moonraker.conf
+#################################################################
+
+Database Versions: pylmdb = 1.4.1, lmdb = (0, 9, 29)
+Unsafe Shutdown Count: 12
+
+System Info:
+
+***python***
+  version: (3, 11, 2, 'final', 0)
+  version_string: 3.11.2 (main, Mar 13 2023, 12:18:29) [GCC 12.2.0]
+
+***cpu_info***
+  cpu_count: 4
+  bits: 64bit
+  processor: x86_64
+  cpu_desc: Intel(R) Core(TM) i5-4302Y CPU @ 1.60GHz
+  serial_number: 
+  hardware_desc: 
+  model: 
+  total_memory: 7521688
+  memory_units: kB
+
+***sd_info***
+  manufacturer_id: 1b
+  manufacturer: Samsung
+  oem_id: 534d
+  product_name: BB1QT
+  product_revision: 3.0
+  serial_number: 418263f0
+  manufacturer_date: 4/2019
+  capacity: 29.8 GiB
+  total_bytes: 32010928128
+
+***distribution***
+  name: Debian GNU/Linux 12 (bookworm)
+  id: debian
+  version: 12
+  version_parts: {'major': '12', 'minor': '', 'build_number': ''}
+  like: 
+  codename: bookworm
+  release_info: {}
+  kernel_version: 6.1.0-18-amd64
+
+***virtualization***
+  virt_type: none
+  virt_identifier: none
+
+***network***
+
+***canbus***
+
+***Allowed Services***
+  klipper_mcu
+  webcamd
+  MoonCord
+  KlipperScreen
+  moonraker-telegram-bot
+  moonraker-obico
+  sonar
+  crowsnest
+  octoeverywhere
+  ratos-configurator
+Module libcamera unavailble, import failed
+
+Systemd unit moonraker.service:
+unit_name: moonraker.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['network-online.target', 'system.slice', 'sysinit.target', '-.mount']
+**After=['sysinit.target', 'basic.target', 'network-online.target', 'systemd-journald.socket', '-.mount', 'system.slice']
+**SupplementaryGroups=['moonraker-admin']
+**EnvironmentFiles=/home/nickisghosty/printer_data/systemd/moonraker.env
+**ExecStart=/home/nickisghosty/moonraker-env/bin/python $MOONRAKER_ARGS
+**WorkingDirectory=/home/nickisghosty/moonraker
+**FragmentPath=/etc/systemd/system/moonraker.service
+**Description=API Server for Klipper SV1
+**User=nickisghosty
+
+Systemd unit klipper.service:
+unit_name: klipper.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['sysinit.target', 'system.slice', '-.mount']
+**After=['system.slice', 'sysinit.target', 'systemd-journald.socket', '-.mount', 'network-online.target', 'basic.target']
+**SupplementaryGroups=[]
+**EnvironmentFiles=/home/nickisghosty/printer_data/systemd/klipper.env
+**ExecStart=/home/nickisghosty/klippy-env/bin/python $KLIPPER_ARGS
+**WorkingDirectory=/home/nickisghosty/klipper
+**FragmentPath=/etc/systemd/system/klipper.service
+**Description=Klipper 3D Printer Firmware SV1
+**User=nickisghosty
+Git Repo moonraker: Warnings detected:
+  Repo has untracked source files: ['moonraker/components/timelapse.py']
+Git Repo klipper: Warnings detected:
+  Repo has untracked source files: ['klippy/extras/led_effect.py']
+Git Repo timelapse: No warnings detected
+Git Repo fluidd-config: No warnings detected
+Git Repo mainsail-config: No warnings detected
+Git Repo crowsnest: No warnings detected
+Git Repo led_effect: No warnings detected
+Git Repo klipper-macros: No warnings detected
+Klipper Version: v0.12.0-125-gbfb71bc2-dirty
+2024-03-20 01:28:38,648 [klippy_connection.py:_process_status_update()] - Klippy has shutdown
+2024-03-20 01:28:38,656 [proc_stats.py:_handle_shutdown()] - 
+Moonraker System Usage Statistics:
+System Time: 1710923288.828066, Usage: 0.66%, Memory: 63228 kB
+System Time: 1710923289.827519, Usage: 0.75%, Memory: 63228 kB
+System Time: 1710923290.829328, Usage: 0.61%, Memory: 63228 kB
+System Time: 1710923291.831515, Usage: 0.73%, Memory: 63228 kB
+System Time: 1710923292.831243, Usage: 0.72%, Memory: 63228 kB
+System Time: 1710923293.832776, Usage: 0.99%, Memory: 63228 kB
+System Time: 1710923294.833477, Usage: 0.7%, Memory: 63228 kB
+System Time: 1710923295.833786, Usage: 0.65%, Memory: 63228 kB
+System Time: 1710923296.835867, Usage: 0.53%, Memory: 63228 kB
+System Time: 1710923297.836554, Usage: 0.7%, Memory: 63228 kB
+System Time: 1710923298.837321, Usage: 0.69%, Memory: 63228 kB
+System Time: 1710923299.837943, Usage: 0.74%, Memory: 63228 kB
+System Time: 1710923300.837741, Usage: 0.62%, Memory: 63228 kB
+System Time: 1710923301.839235, Usage: 0.76%, Memory: 63228 kB
+System Time: 1710923302.840001, Usage: 0.68%, Memory: 63228 kB
+System Time: 1710923303.839916, Usage: 0.86%, Memory: 63228 kB
+System Time: 1710923304.841647, Usage: 0.68%, Memory: 63228 kB
+System Time: 1710923305.842010, Usage: 0.69%, Memory: 63228 kB
+System Time: 1710923306.841613, Usage: 0.68%, Memory: 63228 kB
+System Time: 1710923307.842646, Usage: 0.59%, Memory: 63228 kB
+System Time: 1710923308.845865, Usage: 0.68%, Memory: 63228 kB
+System Time: 1710923309.845151, Usage: 0.77%, Memory: 63228 kB
+System Time: 1710923310.848402, Usage: 0.61%, Memory: 63228 kB
+System Time: 1710923311.848715, Usage: 0.81%, Memory: 63228 kB
+System Time: 1710923312.852091, Usage: 0.6%, Memory: 63228 kB
+System Time: 1710923313.854926, Usage: 0.94%, Memory: 63228 kB
+System Time: 1710923314.856600, Usage: 0.68%, Memory: 63228 kB
+System Time: 1710923315.859471, Usage: 0.73%, Memory: 63228 kB
+System Time: 1710923316.860068, Usage: 0.72%, Memory: 63228 kB
+System Time: 1710923317.861563, Usage: 0.61%, Memory: 63228 kB
+CPU Temperature: 60.0
+2024-03-20 01:28:39,682 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 127.0.0.1
+2024-03-20 02:31:52,155 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 127.0.0.1

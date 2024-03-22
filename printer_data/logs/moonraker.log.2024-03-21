@@ -1,0 +1,325 @@
+-------------------- Log Start | Thu Mar 21 20:56:08 2024 --------------------
+platform: Linux-6.1.0-18-amd64-x86_64-with-glibc2.36
+data_path: /home/nickisghosty/printer_data
+is_default_data_path: False
+config_file: /home/nickisghosty/printer_data/config/moonraker.conf
+startup_warnings: []
+verbose: False
+debug: False
+asyncio_debug: False
+is_backup_config: False
+is_python_package: False
+instance_uuid: 08770c02398642ad9a583036c0321049
+unix_socket_path: /home/nickisghosty/printer_data/comms/moonraker.sock
+software_version: v0.8.0-324-ga3e4dac
+git_branch: master
+git_remote: origin
+git_repo_url: https://github.com/Arksine/moonraker.git
+modified_files: []
+unofficial_components: []
+log_file: /home/nickisghosty/printer_data/logs/moonraker.log
+python_version: 3.11.2 (main, Mar 13 2023, 12:18:29) [GCC 12.2.0]
+launch_args: /home/nickisghosty/moonraker-env/bin/python /home/nickisghosty/moonraker/moonraker/moonraker.py -d /home/nickisghosty/printer_data
+msgspec_enabled: False
+uvloop_enabled: False
+
+#################### Moonraker Configuration ####################
+
+[server]
+host = 0.0.0.0
+port = 7125
+klippy_uds_address = /home/nickisghosty/printer_data/comms/klippy.sock
+
+[authorization]
+trusted_clients = 
+	10.0.0.0/16
+	10.0.0.0/8
+	127.0.0.0/8
+	169.254.0.0/16
+	172.16.0.0/12
+	192.168.0.0/16
+	FE80::/10
+	::1/128
+cors_domains = 
+	*.lan
+	*.local
+	*://localhost
+	*://localhost:*
+	*://my.mainsail.xyz
+	*://app.fluidd.xyz
+
+[octoprint_compat]
+
+[history]
+
+[update_manager]
+channel = dev
+refresh_interval = 168
+
+[timelapse]
+
+[update_manager timelapse]
+type = git_repo
+primary_branch = main
+path = ~/moonraker-timelapse
+origin = https://github.com/mainsail-crew/moonraker-timelapse.git
+managed_services = klipper moonraker
+
+[update_manager fluidd-config]
+type = git_repo
+primary_branch = master
+path = ~/fluidd-config
+origin = https://github.com/fluidd-core/fluidd-config.git
+managed_services = klipper
+
+[update_manager fluidd]
+type = web
+channel = stable
+repo = fluidd-core/fluidd
+path = ~/fluidd
+
+[update_manager mainsail-config]
+type = git_repo
+primary_branch = master
+path = ~/mainsail-config
+origin = https://github.com/mainsail-crew/mainsail-config.git
+managed_services = klipper
+
+[update_manager mainsail]
+type = web
+channel = stable
+repo = mainsail-crew/mainsail
+path = ~/mainsail
+
+[update_manager crowsnest]
+type = git_repo
+path = ~/crowsnest
+origin = https://github.com/mainsail-crew/crowsnest.git
+managed_services = crowsnest
+install_script = tools/pkglist.sh
+
+[update_manager led_effect]
+type = git_repo
+path = ~/klipper-led_effect
+origin = https://github.com/julianschill/klipper-led_effect.git
+is_system_service = False
+
+[update_manager klipper-macros]
+type = git_repo
+origin = https://github.com/jschuh/klipper-macros.git
+path = ~/printer_data/config/klipper-macros
+primary_branch = main
+is_system_service = False
+managed_services = klipper
+
+#################################################################
+All Configuration Files:
+/home/nickisghosty/printer_data/config/moonraker.conf
+#################################################################
+
+Database Versions: pylmdb = 1.4.1, lmdb = (0, 9, 29)
+Unsafe Shutdown Count: 12
+
+System Info:
+
+***python***
+  version: (3, 11, 2, 'final', 0)
+  version_string: 3.11.2 (main, Mar 13 2023, 12:18:29) [GCC 12.2.0]
+
+***cpu_info***
+  cpu_count: 4
+  bits: 64bit
+  processor: x86_64
+  cpu_desc: Intel(R) Core(TM) i5-4302Y CPU @ 1.60GHz
+  serial_number: 
+  hardware_desc: 
+  model: 
+  total_memory: 7521688
+  memory_units: kB
+
+***sd_info***
+  manufacturer_id: 1b
+  manufacturer: Samsung
+  oem_id: 534d
+  product_name: BB1QT
+  product_revision: 3.0
+  serial_number: 418263f0
+  manufacturer_date: 4/2019
+  capacity: 29.8 GiB
+  total_bytes: 32010928128
+
+***distribution***
+  name: Debian GNU/Linux 12 (bookworm)
+  id: debian
+  version: 12
+  version_parts: {'major': '12', 'minor': '', 'build_number': ''}
+  like: 
+  codename: bookworm
+  release_info: {}
+  kernel_version: 6.1.0-18-amd64
+
+***virtualization***
+  virt_type: none
+  virt_identifier: none
+
+***network***
+
+***canbus***
+
+***Allowed Services***
+  klipper_mcu
+  webcamd
+  MoonCord
+  KlipperScreen
+  moonraker-telegram-bot
+  moonraker-obico
+  sonar
+  crowsnest
+  octoeverywhere
+  ratos-configurator
+Module libcamera unavailble, import failed
+
+Systemd unit moonraker.service:
+unit_name: moonraker.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['network-online.target', 'system.slice', 'sysinit.target', '-.mount']
+**After=['sysinit.target', 'basic.target', 'network-online.target', 'systemd-journald.socket', '-.mount', 'system.slice']
+**SupplementaryGroups=['moonraker-admin']
+**EnvironmentFiles=/home/nickisghosty/printer_data/systemd/moonraker.env
+**ExecStart=/home/nickisghosty/moonraker-env/bin/python $MOONRAKER_ARGS
+**WorkingDirectory=/home/nickisghosty/moonraker
+**FragmentPath=/etc/systemd/system/moonraker.service
+**Description=API Server for Klipper SV1
+**User=nickisghosty
+
+Systemd unit klipper.service:
+unit_name: klipper.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['sysinit.target', 'system.slice', '-.mount']
+**After=['system.slice', 'sysinit.target', 'systemd-journald.socket', '-.mount', 'network-online.target', 'basic.target']
+**SupplementaryGroups=[]
+**EnvironmentFiles=/home/nickisghosty/printer_data/systemd/klipper.env
+**ExecStart=/home/nickisghosty/klippy-env/bin/python $KLIPPER_ARGS
+**WorkingDirectory=/home/nickisghosty/klipper
+**FragmentPath=/etc/systemd/system/klipper.service
+**Description=Klipper 3D Printer Firmware SV1
+**User=nickisghosty
+Git Repo moonraker: Warnings detected:
+  Repo has untracked source files: ['moonraker/components/timelapse.py']
+Git Repo klipper: Warnings detected:
+  Repo has untracked source files: ['klippy/extras/led_effect.py']
+Git Repo timelapse: No warnings detected
+Git Repo fluidd-config: No warnings detected
+Git Repo mainsail-config: No warnings detected
+Git Repo crowsnest: No warnings detected
+Git Repo led_effect: No warnings detected
+Git Repo klipper-macros: No warnings detected
+Klipper Version: v0.12.0-125-gbfb71bc2-dirty
+2024-03-21 13:56:08,571 [proc_stats.py:_watchdog_callback()] - EVENT LOOP BLOCKED: 5.21 seconds, total blocked count: 1
+2024-03-21 13:56:08,609 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-03-21 13:56:08,610 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2024-03-21 13:56:08,776 [proc_stats.py:log_last_stats()] - 
+System Time: 1710941105.453666, Usage: 1.0%, Memory: 63264 kB
+System Time: 1710941106.454492, Usage: 1.49%, Memory: 63264 kB
+System Time: 1710941107.455283, Usage: 0.91%, Memory: 63264 kB
+System Time: 1710941108.456334, Usage: 2.1%, Memory: 63264 kB
+System Time: 1711054568.602259, Usage: 0.19%, Memory: 63264 kB
+2024-03-21 13:56:18,591 [machine.py:_find_public_ip()] - Detected Local IP: 10.0.0.123
+2024-03-21 13:56:18,591 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://10.0.0.123
+2024-03-21 13:56:33,393 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-03-21 13:56:33,393 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2024-03-21 13:56:48,274 [machine.py:_find_public_ip()] - Detected Local IP: 10.0.0.123
+2024-03-21 13:56:48,274 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://10.0.0.123
+2024-03-21 22:28:25,016 [proc_stats.py:_watchdog_callback()] - EVENT LOOP BLOCKED: 4.38 seconds, total blocked count: 2
+2024-03-21 22:28:25,223 [proc_stats.py:log_last_stats()] - 
+System Time: 1711054673.335405, Usage: 1.28%, Memory: 63264 kB
+System Time: 1711054674.337588, Usage: 1.01%, Memory: 63264 kB
+System Time: 1711054675.337724, Usage: 2.23%, Memory: 63264 kB
+System Time: 1711054676.339674, Usage: 1.64%, Memory: 63264 kB
+System Time: 1711085305.087777, Usage: 0.3%, Memory: 63264 kB
+2024-03-21 22:28:26,066 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-03-21 22:28:26,067 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2024-03-21 22:28:36,040 [machine.py:_find_public_ip()] - Detected Local IP: 10.0.0.123
+2024-03-21 22:28:36,040 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://10.0.0.123
+2024-03-21 23:05:12,312 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 127.0.0.1
+2024-03-21 23:05:12,312 [application.py:prepare()] - Upload Request Received from 127.0.0.1
+Content-Type: multipart/form-data; boundary=---------------------------11721090843550080882970396180
+2024-03-21 23:05:12,316 [application.py:post()] - Processing Uploaded File: crowsnest.conf
+2024-03-21 23:05:12,321 [application.py:log_request()] - 201 POST /server/files/upload (127.0.0.1) [_TRUSTED_USER_] 9.39ms
+2024-03-21 23:05:12,603 [application.py:prepare()] - Upload Request Received from 127.0.0.1
+Content-Type: multipart/form-data; boundary=---------------------------262646741636966215752015830704
+2024-03-21 23:05:12,608 [application.py:post()] - Processing Uploaded File: fluidd.cfg
+2024-03-21 23:05:12,610 [web.py:log_exception()] - 403 POST /server/files/upload (127.0.0.1): Access to file client.cfg forbidden by reserved path 'update_manager fluidd-config'
+2024-03-21 23:05:12,613 [application.py:log_request()] - 403 POST /server/files/upload (127.0.0.1) [_TRUSTED_USER_] 10.73ms
+2024-03-21 23:05:12,859 [application.py:prepare()] - Upload Request Received from 127.0.0.1
+Content-Type: multipart/form-data; boundary=---------------------------62588420522129603632899070483
+2024-03-21 23:05:12,863 [application.py:post()] - Processing Uploaded File: leds.cfg
+2024-03-21 23:05:12,866 [application.py:log_request()] - 201 POST /server/files/upload (127.0.0.1) [_TRUSTED_USER_] 7.72ms
+2024-03-21 23:05:12,998 [application.py:prepare()] - Upload Request Received from 127.0.0.1
+Content-Type: multipart/form-data; boundary=---------------------------23473318279679127522130397526
+2024-03-21 23:05:13,008 [application.py:post()] - Processing Uploaded File: mainsail.cfg
+2024-03-21 23:05:13,010 [web.py:log_exception()] - 403 POST /server/files/upload (127.0.0.1): Access to file client.cfg forbidden by reserved path 'update_manager mainsail-config'
+2024-03-21 23:05:13,013 [application.py:log_request()] - 403 POST /server/files/upload (127.0.0.1) [_TRUSTED_USER_] 15.22ms
+2024-03-21 23:05:13,172 [application.py:prepare()] - Upload Request Received from 127.0.0.1
+Content-Type: multipart/form-data; boundary=---------------------------325066396114812470443742938268
+2024-03-21 23:05:13,175 [application.py:post()] - Processing Uploaded File: moonraker.conf
+2024-03-21 23:05:13,178 [application.py:log_request()] - 201 POST /server/files/upload (127.0.0.1) [_TRUSTED_USER_] 6.31ms
+2024-03-21 23:05:13,339 [application.py:prepare()] - Upload Request Received from 127.0.0.1
+Content-Type: multipart/form-data; boundary=---------------------------191759979413273576384160807167
+2024-03-21 23:05:13,343 [application.py:post()] - Processing Uploaded File: timelapse.cfg
+2024-03-21 23:05:13,344 [web.py:log_exception()] - 403 POST /server/files/upload (127.0.0.1): Access to file timelapse.cfg forbidden by reserved path 'update_manager timelapse'
+2024-03-21 23:05:13,345 [application.py:log_request()] - 403 POST /server/files/upload (127.0.0.1) [_TRUSTED_USER_] 7.55ms
+2024-03-21 23:05:50,863 [application.py:prepare()] - Upload Request Received from 127.0.0.1
+Content-Type: multipart/form-data; boundary=---------------------------3226751005427109142106529398
+2024-03-21 23:05:50,868 [application.py:post()] - Processing Uploaded File: crowsnest.conf
+2024-03-21 23:05:50,871 [application.py:log_request()] - 201 POST /server/files/upload (127.0.0.1) [_TRUSTED_USER_] 7.89ms
+2024-03-21 23:05:51,125 [application.py:prepare()] - Upload Request Received from 127.0.0.1
+Content-Type: multipart/form-data; boundary=---------------------------199797184941127744882377627169
+2024-03-21 23:05:51,133 [application.py:post()] - Processing Uploaded File: mainsail.cfg
+2024-03-21 23:05:51,134 [web.py:log_exception()] - 403 POST /server/files/upload (127.0.0.1): Access to file client.cfg forbidden by reserved path 'update_manager mainsail-config'
+2024-03-21 23:05:51,137 [application.py:log_request()] - 403 POST /server/files/upload (127.0.0.1) [_TRUSTED_USER_] 11.88ms
+2024-03-21 23:05:51,372 [application.py:prepare()] - Upload Request Received from 127.0.0.1
+Content-Type: multipart/form-data; boundary=---------------------------4190915918238872761455493488
+2024-03-21 23:05:51,377 [application.py:post()] - Processing Uploaded File: moonraker.conf
+2024-03-21 23:05:51,380 [application.py:log_request()] - 201 POST /server/files/upload (127.0.0.1) [_TRUSTED_USER_] 8.12ms
+2024-03-21 23:05:51,480 [application.py:prepare()] - Upload Request Received from 127.0.0.1
+Content-Type: multipart/form-data; boundary=---------------------------226761639027699212012165659372
+2024-03-21 23:05:51,484 [application.py:post()] - Processing Uploaded File: printer.cfg
+2024-03-21 23:05:51,486 [application.py:log_request()] - 201 POST /server/files/upload (127.0.0.1) [_TRUSTED_USER_] 6.06ms
+2024-03-21 23:05:51,591 [application.py:prepare()] - Upload Request Received from 127.0.0.1
+Content-Type: multipart/form-data; boundary=---------------------------22068913731080281172756744440
+2024-03-21 23:05:51,596 [application.py:post()] - Processing Uploaded File: timelapse.cfg
+2024-03-21 23:05:51,597 [web.py:log_exception()] - 403 POST /server/files/upload (127.0.0.1): Access to file timelapse.cfg forbidden by reserved path 'update_manager timelapse'
+2024-03-21 23:05:51,599 [application.py:log_request()] - 403 POST /server/files/upload (127.0.0.1) [_TRUSTED_USER_] 8.14ms
+2024-03-21 23:05:53,739 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2024-03-21 23:05:53,786 [common.py:build_error()] - JSON-RPC Request Error - Requested Method: printer.info, Code: 503, Message: Klippy Host not connected
+2024-03-21 23:05:54,994 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2024-03-21 23:07:24,500 [klippy_connection.py:close()] - Error closing Klippy Unix Socket
+Traceback (most recent call last):
+  File "/home/nickisghosty/moonraker/moonraker/components/klippy_connection.py", line 769, in close
+    await self.writer.wait_closed()
+  File "/usr/lib/python3.11/asyncio/streams.py", line 350, in wait_closed
+    await self._protocol._get_close_waiter(self)
+  File "/usr/lib/python3.11/asyncio/selector_events.py", line 995, in _read_ready__data_received
+    data = self._sock.recv(self.max_size)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [Errno 104] Connection reset by peer
+2024-03-21 23:07:24,500 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2024-03-21 23:07:24,500 [common.py:build_error()] - JSON-RPC Request Error - Requested Method: printer.info, Code: 503, Message: Klippy Disconnected
+2024-03-21 23:07:24,536 [common.py:build_error()] - JSON-RPC Request Error - Requested Method: printer.info, Code: 503, Message: Klippy Host not connected
+2024-03-21 23:07:24,752 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2024-03-21 23:08:57,175 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2024-03-21 23:08:57,176 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2024-03-21 23:08:57,176 [klippy_connection.py:_check_ready()] - 
+mcu 'mcu': Unable to connect
+Once the underlying issue is corrected, use the
+"FIRMWARE_RESTART" command to reset the firmware, reload the
+config, and restart the host software.
+Error configuring printer
+
+2024-03-21 23:54:01,808 [machine.py:_find_public_ip()] - Detected Local IP: 10.0.0.123
+2024-03-21 23:54:11,818 [machine.py:_find_public_ip()] - Detected Local IP: 10.0.0.123
